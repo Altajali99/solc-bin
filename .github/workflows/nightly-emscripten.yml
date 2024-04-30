@@ -119,10 +119,7 @@ jobs:
 
     if: "needs.build-emscripten-nightly.outputs.nightly-already-exists == 'false'"
     steps:
-      # TODO: remove when https://github.com/axic/keccakjs/issues/13 got fixed
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      - uses: actions/setup-node@v4
 
       - name: Symlink solc-bin to /mnt/solc-bin
         # It's now too big to fit on the main partition on Ubuntu, which is mostly filled with software.
