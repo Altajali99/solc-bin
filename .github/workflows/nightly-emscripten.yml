@@ -29,7 +29,7 @@ jobs:
           sudo chown "$USER" /mnt/solc-bin/
           ln -s /mnt/solc-bin/ solc-bin
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: 'ethereum/solidity'
           ref: 'develop'
@@ -79,7 +79,7 @@ jobs:
 
       - name: Upload soljson.js as an artifact
         if: "env.NIGHTLY_ALREADY_EXISTS == 'false'"
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: soljson.js
           path: solidity/upload/soljson.js
@@ -94,12 +94,12 @@ jobs:
 
     if: "needs.build-emscripten-nightly.outputs.nightly-already-exists == 'false'"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: 'ethereum/solidity'
 
       - name: Download soljson.js artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: soljson.js
 
@@ -128,13 +128,13 @@ jobs:
           sudo chown "$USER" /mnt/solc-bin/
           ln -s /mnt/solc-bin/ solc-bin
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_BRANCH }}
           path: 'solc-bin'
 
       - name: Download soljson.js artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: soljson.js
 

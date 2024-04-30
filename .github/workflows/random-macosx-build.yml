@@ -63,7 +63,7 @@ jobs:
     if: "needs.select-solc-version.outputs.solidity-version"
     steps:
       - name: Check out Solidity source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'ethereum/solidity'
           ref: v${{ env.SOLIDITY_VERSION }}
@@ -272,7 +272,7 @@ jobs:
           ! [[ $(solc/solc --version) =~ [-.]mod ]] || { echo "ERROR: Not a release build!"; exit 1; }
 
       - name: Upload solc as an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           # NOTE: The name is used for the .zip archive but the file inside is still called solc
           name: solc-macosx-amd64-${{ env.FULL_BUILD_VERSION }}
@@ -365,7 +365,7 @@ jobs:
           sudo chown "$USER" /mnt/solc-bin/
           ln -s /mnt/solc-bin/ solc-bin
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ env.TARGET_BRANCH }}
           path: 'solc-bin'
@@ -381,7 +381,7 @@ jobs:
           test ! -e "solc-bin/macosx-amd64/solc-macosx-amd64-${{ env.FULL_BUILD_VERSION }}"
 
       - name: Download MacOS artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: solc-macosx-amd64-${{ env.FULL_BUILD_VERSION }}
 
