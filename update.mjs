@@ -16,7 +16,6 @@ import {
 } from 'fs'
 
 import semver from 'semver'
-import swarmhash from 'swarmhash'
 import { readFile as readFileAsync } from 'node:fs/promises'
 import { keccak, sha256 } from 'ethereumjs-util'
 import { importer } from 'ipfs-unixfs-importer'
@@ -155,7 +154,6 @@ async function makeEntry (dir, parsedFileName, oldList) {
     console.log("Computing hashes of '" + pathRelativeToRoot + "'")
     build.sha256 = '0x' + sha256(fileContent).toString('hex')
     build.urls = [
-      'bzzr://' + swarmhash(fileContent).toString('hex'),
       'dweb:/ipfs/' + await ipfsHash(fileContent)
     ]
   }
